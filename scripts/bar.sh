@@ -6,7 +6,7 @@
 interval=0
 
 mpd() {
-  song=$(sb-mpd)
+  song=$($HOME/.config/suckless/master/scripts/bar/sb-mpd)
   printf "^C7^$song^C8^"
 }
 
@@ -20,17 +20,17 @@ pkg_updates() {
 }
 
 cpu() {
-  cpu_val=$($HOME/.config/suckless/scripts/bar/sb-cpu)
+  cpu_val=$($HOME/.config/suckless/master/scripts/bar/sb-cpu)
   printf "^C3^ $cpu_val^C8^"
 }
 
 temp() {
-  temp=$($HOME/.config/suckless/scripts/bar/sb-temp)
+  temp=$($HOME/.config/suckless/master/scripts/bar/sb-temp)
   printf "^C1^ $temp°C^C8^"
 }
 
 mem() {
-  mem=$($HOME/.config/suckless/scripts/bar/sb-mem)
+  mem=$($HOME/.config/suckless/master/scripts/bar/sb-mem)
   printf "^C5^ $mem C8^"
 }
 
@@ -62,7 +62,7 @@ battery() {
 }
 
 wlan() {
-  wifi=$($HOME/.config/suckless/scripts/bar/sb-wifi)
+	wifi=$($HOME/.config/suckless/master/scripts/bar/sb-wifi)
 	printf "^C4^󰤭 $wifi^C8^"
 }
 
