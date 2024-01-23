@@ -1,0 +1,11 @@
+#!/bin/sh
+
+case "$(cat /sys/class/net/wl*/operstate 2>/dev/null)" in
+		up) 
+			ipadd="$(ip -p -f inet address | grep inet | awk 'NR == 2 {print $2}')" 
+			echo "$ipadd"
+		;;
+		down)  
+			echo "Disconnected"
+		;;
+	esac

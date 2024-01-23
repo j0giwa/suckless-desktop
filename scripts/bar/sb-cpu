@@ -1,0 +1,6 @@
+
+#!/bin/sh
+
+cpu_val=$(grep -o "^[^ ]*" /proc/loadavg)
+
+echo "$cpu_val"
