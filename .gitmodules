@@ -1,9 +1,9 @@
 [submodule "dwm"]
 	path = dwm
-	url = git@github.com:j0giwa/dwm.git
+	url = https://github.com/j0giwa/dwm
 [submodule "dmenu"]
 	path = dmenu
-	url = git@github.com:j0giwa/dmenu.git
+	url = https://github.com/j0giwa/dmenu
 [submodule "st"]
 	path = st
-	url = git@github.com:j0giwa/st.git
+	url = https://github.com/j0giwa/st
