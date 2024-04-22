@@ -70,6 +70,7 @@ battery() {
 
 wlan() {
 	wifi=$($HOME/.config/suckless/scripts/bar/sb-wifi)
+ 	[ -z "$wifi" ] && wifi="N/A"
 	printf "^C4^󰤭 $wifi^C8^"
 }
 
