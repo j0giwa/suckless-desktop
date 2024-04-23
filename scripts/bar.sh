@@ -40,9 +40,9 @@ disk() {
 }
 
 battery() {
-	if [[ -d /sys/class/power_supply/AC ]]
+	if [[ -d /sys/class/power_supply/AC ]]; then
  		printf "^C1^AC^C8^"
-  	else
+	else
   		# Loop through all attached batteries and format the info
 		for battery in /sys/class/power_supply/BAT?*; do
 			# If non-first battery, print a space separator.
