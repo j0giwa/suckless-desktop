@@ -12,11 +12,7 @@ mpd() {
 
 pkg_updates() {
   updates=$({ timeout 20 checkupdates+aur 2>/dev/null || true; } | wc -l) # arch
-  if [ -z "$updates" ]; then
-    printf "^C6^ Fully Updated^C8^"
-  else
-    printf "^C6^ $updates updates^C8^"
-  fi
+  printf "^C6^$updates updates^C8^"
 }
 
 cpu() {
@@ -71,7 +67,7 @@ battery() {
 wlan() {
 	wifi=$($HOME/.config/suckless/scripts/bar/sb-wifi)
  	[ -z "$wifi" ] && wifi="N/A"
-	printf "^C4^󰤭 $wifi^C8^"
+	printf "^C4^$wifi^C8^"
 }
 
 clock() {
