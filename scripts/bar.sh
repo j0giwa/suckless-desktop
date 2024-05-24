@@ -12,32 +12,38 @@ mpd() {
 
 pkg_updates() {
   updates=$({ timeout 20 checkupdates+aur 2>/dev/null || true; } | wc -l) # arch
-  printf "^C6^$updates updates^C8^"
+  printf "^C6^\uE0B2^C0^^B6^$updates updates"
 }
 
 cpu() {
   cpu_val=$($HOME/.config/suckless/scripts/bar/sb-cpu)
-  printf "^C3^ $cpu_val^C8^"
+  printf "^C3^\uE0B2^C0^^B3^ $cpu_val"
 }
 
 temp() {
   temp=$($HOME/.config/suckless/scripts/bar/sb-temp)
-  printf "^C1^ $temp°C^C8^"
+  printf "^C1^\uE0B2^C0^^B1^ $temp°C"
 }
 
 mem() {
   mem=$($HOME/.config/suckless/scripts/bar/sb-mem)
-  printf "^C5^ $mem C8^"
+  printf "^C5^\uE0B2^C0^^B5^ $mem C8^"
 }
 
 disk() {
    	space="$(df /dev/sda2 -h | awk 'NR ==2 {print $4}')"
-   	printf "^C2^ $space free^C8^"
+   	printf "^C2^\uE0B2^C0^^B2^ $space free"
+}
+
+wlan() {
+	wifi=$($HOME/.config/suckless/scripts/bar/sb-wifi)
+ 	[ -z "$wifi" ] && wifi="N/A"
+	printf "^C4^\uE0B2^C0^^B4^$wifi"
 }
 
 battery() {
 	if [[ -d /sys/class/power_supply/AC ]]; then
- 		printf "^C1^AC^C8^"
+ 		printf "^C1^\uE0B2^C0^^B1^AC"
 	else
   		# Loop through all attached batteries and format the info
 		for battery in /sys/class/power_supply/BAT?*; do
@@ -64,18 +70,13 @@ battery() {
   	fi
 }
 
-wlan() {
-	wifi=$($HOME/.config/suckless/scripts/bar/sb-wifi)
- 	[ -z "$wifi" ] && wifi="N/A"
-	printf "^C4^$wifi^C8^"
-}
-
 clock() {
-	printf "^C6^$(date '+%H:%M')^C8^"
+	printf "^C6^\uE0B2^C0^^B6^$(date '+%H:%M')"
 }
 
 while true; do
 	[ $interval = 0 ] || [ $(($interval % 3600)) = 0 ] && updates=$(pkg_updates)
   	interval=$((interval + 1))
-  	sleep 1 && xsetroot -name "$(mpd) | $updates | $(cpu) | $(temp) | $(mem) | $(disk) | $(wlan) | $(battery) | $(clock) "
+  	#sleep 1 && xsetroot -name "$(mpd) $updates $(cpu) $(temp) $(mem) $(disk) $(wlan) $(battery) $(clock) ^d^"
+  	sleep 1 && xsetroot -name "$updates $(cpu) $(temp) $(mem) $(disk) $(wlan) $(battery) $(clock) ^d^"
 done
