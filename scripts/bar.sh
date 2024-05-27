@@ -65,7 +65,7 @@ battery() {
    			# Will make a warn variable if discharging and low
 			[ "$status" = "🔋" ] && [ "$capacity" -le 25 ] && warn="❗"
 			
-			printf "^C1^%s%s%d%%^C8^" "$status" "$warn" "$capacity"; unset warn
+			printf "^C1^\uE0B2^C0^^B1^ %s%s%d%%" "$status" "$warn" "$capacity"; unset warn
 		done && printf "\\n"
   	fi
 }
